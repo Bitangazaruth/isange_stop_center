@@ -1,0 +1,82 @@
+[
+  {
+    "victim_name": "Bob Smith",
+    "gender": "Male",
+    "doctor_name": "Dr. Jane Roe",
+    "needed_aid": "Intensive Care",
+    "next_appointment": "2024-06-05 14:30:00",
+    "action": "Monitor condition and prepare for possible surgery."
+  },
+  {
+    "victim_name": "Alice Johnson",
+    "gender": "Female",
+    "doctor_name": "Dr. Emily White",
+    "needed_aid": "Psychological Counseling",
+    "next_appointment": "2024-06-06 16:45:00",
+    "action": "Provide counseling and support."
+  },
+  {
+    "victim_name": "Charlie Brown",
+    "gender": "Male",
+    "doctor_name": "Dr. Mark Green",
+    "needed_aid": "Critical Care",
+    "next_appointment": "2024-06-05 10:15:00",
+    "action": "Immediate surgery and intensive care monitoring."
+  },
+  {
+    "victim_name": "Daisy Miller",
+    "gender": "Female",
+    "doctor_name": "Dr. Sarah Brown",
+    "needed_aid": "Minor Medical Care",
+    "next_appointment": "2024-06-06 18:00:00",
+    "action": "Follow-up visit to check for any delayed symptoms."
+  },
+  {
+    "victim_name": "Evan Davis",
+    "gender": "Male",
+    "doctor_name": "Dr. Brian Wilson",
+    "needed_aid": "Medical Examination",
+    "next_appointment": "2024-06-06 12:30:00",
+    "action": "Conduct medical examination and provide legal support."
+  },
+  {
+    "victim_name": "Fiona Garcia",
+    "gender": "Female",
+    "doctor_name": "Dr. Linda Smith",
+    "needed_aid": "Emergency Medical Treatment",
+    "next_appointment": "2024-06-05 09:45:00",
+    "action": "Emergency treatment and ensure safety."
+  },
+  {
+    "victim_name": "George Harrison",
+    "gender": "Male",
+    "doctor_name": "Dr. Steven Johnson",
+    "needed_aid": "Medical Check-up",
+    "next_appointment": "2024-06-06 20:00:00",
+    "action": "Conduct medical check-up and recommend rest."
+  },
+  {
+    "victim_name": "Hannah Lee",
+    "gender": "Female",
+    "doctor_name": "Dr. Patricia Thomas",
+    "needed_aid": "Trauma Counseling",
+    "next_appointment": "2024-06-06 11:30:00",
+    "action": "Provide trauma counseling and legal advice."
+  },
+  {
+    "victim_name": "Ivan Wright",
+    "gender": "Male",
+    "doctor_name": "Dr. Paul Brown",
+    "needed_aid": "Critical Care",
+    "next_appointment": "2024-06-05 08:30:00",
+    "action": "Emergency surgery and intensive monitoring."
+  },
+  {
+    "victim_name": "Jackie Robinson",
+    "gender": "Male",
+    "doctor_name": "Dr. Barbara Green",
+    "needed_aid": "General Medical Care",
+    "next_appointment": "2024-06-06 13:15:00",
+    "action": "Follow-up visit for any delayed effects of the incident."
+  }
+]

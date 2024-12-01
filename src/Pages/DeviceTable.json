@@ -1,0 +1,114 @@
+[
+  {
+    "id": "1",
+    "location": "nyarugenge",
+    "deviceCode": "xcoo5se",
+    "deviceName": "xcoo5se",
+    "plantType": "ibigori",
+    "status": "active"
+  },
+  {
+    "id": "2",
+    "location": "nyarugenge",
+    "deviceCode": "xcoo5se",
+    "deviceName": "xcoo5se",
+    "plantType": "ibigori",
+    "status": "inactive"
+  },
+  {
+    "id": "3",
+    "location": "nyarugenge",
+    "deviceCode": "xcoo5se",
+    "deviceName": "xcoo5se",
+    "plantType": "ibigori",
+    "status": "pending"
+  },
+  {
+    "id": "4",
+    "location": "nyarugenge",
+    "deviceCode": "xcoo5se",
+    "deviceName": "xcoo5se",
+    "plantType": "ibigori",
+    "status": "active"
+  },
+  {
+    "id": "5",
+    "location": "nyarugenge",
+    "deviceCode": "xcoo5se",
+    "deviceName": "xcoo5se",
+    "plantType": "ibigori",
+    "status": "inactive"
+  },
+  {
+    "id": "6",
+    "location": "nyarugenge",
+    "deviceCode": "xcoo5se",
+    "deviceName": "xcoo5se",
+    "plantType": "ibigori",
+    "status": "pending"
+  },
+  {
+    "id": "7",
+    "location": "nyarugenge",
+    "deviceCode": "xcoo5se",
+    "deviceName": "xcoo5se",
+    "plantType": "ibigori",
+    "status": "pending"
+  },
+  {
+    "id": "8",
+    "location": "nyarugenge",
+    "deviceCode": "xcoo5se",
+    "deviceName": "xcoo5se",
+    "plantType": "ibigori",
+    "status": "pending"
+  },
+  {
+    "id": "9",
+    "location": "nyarugenge",
+    "deviceCode": "xcoo5se",
+    "deviceName": "xcoo5se",
+    "plantType": "ibigori",
+    "status": "pending"
+  },
+  {
+    "id": "10",
+    "location": "nyarugenge",
+    "deviceCode": "xcoo5se",
+    "deviceName": "xcoo5se",
+    "plantType": "ibigori",
+    "status": "pending"
+  },
+  {
+    "id": "11",
+    "location": "nyarugenge",
+    "deviceCode": "xcoo5se",
+    "deviceName": "xcoo5se",
+    "plantType": "ibigori",
+    "status": "pending"
+  },
+  {
+    "id": "12",
+    "location": "nyarugenge",
+    "deviceCode": "xcoo5se",
+    "deviceName": "xcoo5se",
+    "plantType": "ibigori",
+    "status": "pending"
+  },
+  {
+    "id": "13",
+    "location": "nyarugenge",
+    "deviceCode": "xcoo5se",
+    "deviceName": "xcoo5se",
+    "plantType": "ibigori",
+    "status": "pending"
+  },
+  {
+    "id": "14",
+    "location": "nyarugenge",
+    "deviceCode": "xcoo5se",
+    "deviceName": "xcoo5se",
+    "plantType": "ibigori",
+    "status": "active"
+  }
+]

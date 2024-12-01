@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "crop_name": "Carrot",
+    "farm": "Green Fields",
+    "area": 2.5,
+    "planting_date": "June 1, 2023",
+    "current_status": "In Progress",
+    "harvest_date": "September 15, 2023"
+  },
+  {
+    "id": 2,
+    "crop_name": "Tomato",
+    "farm": "Sunrise Farm",
+    "area": 3,
+    "planting_date": "May 15, 2023",
+    "current_status": "Overdue",
+    "harvest_date": "August 30, 2023"
+  },
+  {
+    "id": 3,
+    "crop_name": "Potato",
+    "farm": "Golden Harvest",
+    "area": 4.2,
+    "planting_date": "April 20, 2023",
+    "current_status": "In Progress",
+    "harvest_date": "July 25, 2023"
+  },
+  {
+    "id": 4,
+    "crop_name": "Lettuce",
+    "farm": "Fresh Greens",
+    "area": 1.8,
+    "planting_date": "May 10, 2023",
+    "current_status": "Overdue",
+    "harvest_date": "August 20, 2023"
+  },
+  {
+    "id": 5,
+    "crop_name": "Cucumber",
+    "farm": "Cool Valley",
+    "area": 2.7,
+    "planting_date": "June 5, 2023",
+    "current_status": "In Progress",
+    "harvest_date": "September 20, 2023"
+  },
+  {
+    "id": 6,
+    "crop_name": "Bell Pepper",
+    "farm": "Rainbow Farms",
+    "area": 3.5,
+    "planting_date": "April 25, 2023",
+    "current_status": "Overdue",
+    "harvest_date": "August 10, 2023"
+  },
+  {
+    "id": 7,
+    "crop_name": "Spinach",
+    "farm": "Green Leaf Farms",
+    "area": 2,
+    "planting_date": "May 20, 2023",
+    "current_status": "In Progress",
+    "harvest_date": "September 5, 2023"
+  },
+  {
+    "id": 8,
+    "crop_name": "Broccoli",
+    "farm": "Healthy Harvest",
+    "area": 3.2,
+    "planting_date": "April 15, 2023",
+    "current_status": "Overdue",
+    "harvest_date": "August 5, 2023"
+  },
+  {
+    "id": 9,
+    "crop_name": "Radish",
+    "farm": "Roots Farm",
+    "area": 2.3,
+    "planting_date": "June 10, 2023",
+    "current_status": "In Progress",
+    "harvest_date": "September 25, 2023"
+  },
+  {
+    "id": 10,
+    "crop_name": "Eggplant",
+    "farm": "Purple Fields",
+    "area": 3.8,
+    "planting_date": "May 5, 2023",
+    "current_status": "Overdue",
+    "harvest_date": "August 15, 2023"
+  },
+  {
+    "id": 11,
+    "crop_name": "Green Bean",
+    "farm": "Beanstalk Farm",
+    "area": 2.1,
+    "planting_date": "June 15, 2023",
+    "current_status": "In Progress",
+    "harvest_date": "October 1, 2023"
+  },
+  {
+    "id": 12,
+    "crop_name": "Zucchini",
+    "farm": "Harvest Hills",
+    "area": 3.6,
+    "planting_date": "May 1, 2023",
+    "current_status": "Overdue",
+    "harvest_date": "August 25, 2023"
+  },
+  {
+    "id": 13,
+    "crop_name": "Onion",
+    "farm": "Sweet Onion Farms",
+    "area": 2.6,
+    "planting_date": "June 20, 2023",
+    "current_status": "In Progress",
+    "harvest_date": "October 5, 2023"
+  },
+  {
+    "id": 14,
+    "crop_name": "Cabbage",
+    "farm": "Crisp Cabbage Co.",
+    "area": 3.1,
+    "planting_date": "April 30, 2023",
+    "current_status": "Overdue",
+    "harvest_date": "August 15, 2023"
+  },
+  {
+    "id": 15,
+    "crop_name": "Pumpkin",
+    "farm": "Pumpkin Patch",
+    "area": 4.5,
+    "planting_date": "May 25, 2023",
+    "current_status": "In Progress",
+    "harvest_date": "October 10, 2023"
+  }
+]

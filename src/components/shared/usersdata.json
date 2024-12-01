@@ -1,0 +1,180 @@
+[
+  {
+    "id": 1,
+    "national_id": "A1234567B",
+    "victim_name": "Alice Johnson",
+    "victim_contact": {
+      "phone": "+1234567890",
+      "email": "alice.johnson@example.com"
+    },
+    "gender": "Female",
+    "risk_type": "Physical",
+    "location": "Nyarugenge",
+    "current_risk_level": "High",
+    "interventions": [
+      "Immediate police protection",
+      "Emergency shelter",
+      "Legal aid for restraining order"
+    ],
+    "status": "Case In RIB"
+  },
+  {
+    "id": 2,
+    "national_id": "C9876543D",
+    "victim_name": "Bob Smith",
+    "victim_contact": {
+      "phone": "+1234567891",
+      "email": "bob.smith@example.com"
+    },
+    "gender": "Male",
+    "risk_type": "Sexual",
+    "location": "Gasabo",
+    "current_risk_level": "Moderate",
+    "interventions": [
+      "Counseling services",
+      "Medical examination",
+      "Safety planning"
+    ],
+    "status": "In court"
+  },
+  {
+    "id": 3,
+    "national_id": "E2468135F",
+    "victim_name": "Carol Martinez",
+    "victim_contact": {
+      "phone": "+1234567892",
+      "email": "carol.martinez@example.com"
+    },
+    "gender": "Female",
+    "risk_type": "Emotional",
+    "location": "Kicukiro",
+    "current_risk_level": "Low",
+    "interventions": ["Support group referral", "Legal advice", "Monitoring"],
+    "status": "Unsigned"
+  },
+  {
+    "id": 4,
+    "national_id": "G1357924H",
+    "victim_name": "David Lee",
+    "victim_contact": {
+      "phone": "+1234567893",
+      "email": "david.lee@example.com"
+    },
+    "gender": "Male",
+    "risk_type": "Financial",
+    "location": "Family home",
+    "current_risk_level": "Moderate",
+    "interventions": [
+      "Financial counseling",
+      "Legal assistance",
+      "Emergency financial aid"
+    ],
+    "status": "In court"
+  },
+  {
+    "id": 5,
+    "national_id": "I3692581J",
+    "victim_name": "Eva Green",
+    "victim_contact": {
+      "phone": "+1234567894",
+      "email": "eva.green@example.com"
+    },
+    "gender": "Female",
+    "risk_type": "Psychological",
+    "location": "Kayonza",
+    "current_risk_level": "Low",
+    "interventions": [
+      "Workplace mediation",
+      "Counseling",
+      "Workplace monitoring"
+    ],
+    "status": "Unsigned"
+  },
+  {
+    "id": 6,
+    "national_id": "K9876543L",
+    "victim_name": "Frank Harris",
+    "victim_contact": {
+      "phone": "+1234567895",
+      "email": "frank.harris@example.com"
+    },
+    "gender": "Male",
+    "risk_type": "Neglect",
+    "location": "Rwamagana",
+    "current_risk_level": "High",
+    "interventions": [
+      "Change of caregiver",
+      "Legal action",
+      "Medical examination"
+    ],
+    "status": "Case In RIB"
+  },
+  {
+    "id": 7,
+    "national_id": "M7539518N",
+    "victim_name": "Grace White",
+    "victim_contact": {
+      "phone": "+1234567896",
+      "email": "grace.white@example.com"
+    },
+    "gender": "Female",
+    "risk_type": "Stalking",
+    "location": "Kirehe",
+    "current_risk_level": "Moderate",
+    "interventions": ["Restraining order", "Safety planning", "Counseling"],
+    "status": "In court"
+  },
+  {
+    "id": 8,
+    "national_id": "O1592637P",
+    "victim_name": "Henry Brown",
+    "victim_contact": {
+      "phone": "+1234567897",
+      "email": "henry.brown@example.com"
+    },
+    "gender": "Male",
+    "risk_type": "Cyberbullying",
+    "location": "Online",
+    "current_risk_level": "Low",
+    "interventions": ["Digital safety measures", "Counseling", "Legal advice"],
+    "status": "Unsigned"
+  },
+  {
+    "id": 9,
+    "national_id": "Q7418529R",
+    "victim_name": "Isabella Wilson",
+    "victim_contact": {
+      "phone": "+1234567898",
+      "email": "isabella.wilson@example.com"
+    },
+    "gender": "Female",
+    "risk_type": "Sexual",
+    "location": "Nyanza",
+    "current_risk_level": "High",
+    "interventions": [
+      "Legal action",
+      "Counseling",
+      "Workplace protection measures"
+    ],
+    "status": "Case In RIB"
+  },
+  {
+    "id": 10,
+    "national_id": "S8529631T",
+    "victim_name": "Jack Davis",
+    "victim_contact": {
+      "phone": "+1234567899",
+      "email": "jack.davis@example.com"
+    },
+    "gender": "Male",
+    "risk_type": "Domestic",
+    "location": "Nyamasheke",
+    "current_risk_level": "High",
+    "interventions": [
+      "Immediate police protection",
+      "Emergency shelter",
+      "Legal assistance"
+    ],
+    "status": "Case In RIB"
+  }
+]

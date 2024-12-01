@@ -1,0 +1,28 @@
+[
+      {
+        "name": "Kagitumba",
+        "date": 16.01,
+        "end": 16.01,
+        "feature": 2.5,
+        "cost": 16.01,
+        "farm": 16.02
+      },
+        {
+    "name": "Ka",
+    "date": 16.01,
+    "end": 16.01,
+    "feature": 2.5,
+    "cost": 16.01,
+    "farm": 16.02
+     
+  },
+    {
+    "name": "Kagitumba",
+    "date": 16.01,
+    "end": 16.01,
+    "feature": 3.5,
+    "cost": 16.01,
+    "farm": 16.02
+     
+  }
+]
