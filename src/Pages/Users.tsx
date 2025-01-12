@@ -11,10 +11,9 @@ import {
 import { FaSearch, FaCalendarAlt } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa6";
 import { FiTrash2, FiEdit } from "react-icons/fi";
-import { MdOutlineNavigateNext } from "react-icons/md";
-import { GrFormPrevious } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import Notiflix from "notiflix";
+import { Paginate } from "@/components/Paginate";
 const Users = () => {
   const [data, setData] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -24,7 +23,7 @@ const Users = () => {
   const [filtering, setFiltering] = useState("");
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 5,
+    pageSize: 15,
   });
 
   useEffect(() => {
@@ -140,6 +139,7 @@ const Users = () => {
     {
       header: "Date",
       accessorKey: "date",
+      cell: ({ getValue }) => new Date(getValue()).toLocaleDateString(),
     },
     {
       accessorKey: "Actions",
@@ -147,11 +147,12 @@ const Users = () => {
       cell: ({ row }) => (
         <div className="flex space-x-2">
           <Link to={`/admin/single/${row.original._id}`}>
-            <FiEdit className="text-green-500 cursor-pointer" />
+            <FiEdit className="text-green-500 cursor-pointer" size={15} />
           </Link>
           <FiTrash2
             className="text-red-500 cursor-pointer"
             onClick={() => handleDeleteUser(row.original._id)}
+            size={15}
           />
         </div>
       ),
@@ -176,10 +177,10 @@ const Users = () => {
   });
 
   return (
-    <div className="mt-4 h-full">
+    <div className="mt-4 h-full p-4">
       <div className="flex justify-between items-center mb-3">
         <div className="flex items-center space-x-3">
-          <p className="font-semibold ml-4">SORT BY</p>
+          <p className="font-semibold ml-4 text-gray-400">SORT BY</p>
           <div className="relative">
             <div
               className="flex items-center space-x-1 px-2 py-1 cursor-pointer"
@@ -219,15 +220,15 @@ const Users = () => {
         </div>
       </div>
 
-      <table className="table-auto border-collapse border-none w-[96%] bg-white rounded-[22px] ml-2">
+      <table className="table-auto border-collapse border-none w-[96%] bg-white rounded-[5px] ml-2 overflow-hidden">
         <thead>
-          <tr className="text-[#000] text-[12px] bolder">
+          <tr className="text-[#000] text-[12px] bolder rounded-[5px]">
             {table.getHeaderGroups().map((headerGroup) => (
               <React.Fragment key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="px-4 py-2 text-left font-semibold text-gray-700"
+                    className="px-4 py-4 text-left font-semibold text-gray-700 bg-slate-300 p-2"
                     onClick={header.column.getToggleSortingHandler()}
                   >
                     <div>
@@ -244,7 +245,10 @@ const Users = () => {
         </thead>
         <tbody className="w-[101px] h-[19px] text-black text-xs font-normal font-['Inter']">
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="hover:bg-gray-100">
+            <tr
+              key={row.id}
+              className="hover:bg-gray-100 py-4 border-b border-gray-200"
+            >
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} className="px-4 py-2 border-none">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -254,55 +258,11 @@ const Users = () => {
           ))}
         </tbody>
       </table>
-
-      <div className="w-[40%] h-[32px] relative bg-white rounded-lg flex justify-end items-center mt-2 shadow border-[#00743F] left-[33rem]">
-        <button
-          className="w-1/3 h-7 text-center font-medium font-sans flex justify-center items-center"
-          onClick={() =>
-            setPagination((prevState) => ({
-              ...prevState,
-              pageIndex: prevState.pageIndex - 1,
-            }))
-          }
-          disabled={pagination.pageIndex === 0}
-        >
-          <span>
-            <GrFormPrevious />
-          </span>
-        </button>
-        {[...Array(table.getPageCount()).keys()].map((index) => (
-          <button
-            key={index}
-            className={`w-1/3 h-7 text-center font-medium font-sans flex justify-center items-center ${
-              index === pagination.pageIndex
-                ? "border bg-[#084287] text-white"
-                : ""
-            }`}
-            onClick={() =>
-              setPagination((prevState) => ({
-                ...prevState,
-                pageIndex: index,
-              }))
-            }
-          >
-            <span>{index + 1}</span>
-          </button>
-        ))}
-        <button
-          className="w-1/3 h-7 text-center font-medium font-sans rounded-r-full flex justify-center items-center"
-          onClick={() =>
-            setPagination((prevState) => ({
-              ...prevState,
-              pageIndex: prevState.pageIndex + 1,
-            }))
-          }
-          disabled={pagination.pageIndex === table.getPageCount() - 1}
-        >
-          <span>
-            <MdOutlineNavigateNext />
-          </span>
-        </button>
-      </div>
+      <Paginate
+        table={table}
+        pagination={pagination}
+        setPagination={setPagination}
+      />
     </div>
   );
 };

@@ -7,7 +7,7 @@ const Home = () => {
         Welcome to CRISIS GUARD
       </h1>
       <h2 className="text-white text-lg font-bold">By Isange One Stop Center</h2>
-      <Link className="border-b text-blue-200 hover:text-blue-400 mt-4" to="/signup">
+      <Link className="border-b text-blue-200 hover:text-blue-400 mt-4" to="/login">
         Get Started
       </Link>
     </div>

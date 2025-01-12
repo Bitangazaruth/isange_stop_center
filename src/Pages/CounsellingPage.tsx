@@ -102,24 +102,24 @@ const CounsellingPage = () => {
           </p>
           <div className="mt-2">
             <p className="mt-2 text-gray-600">
-              <strong>Umererwa Viviane:</strong> +250 780 163 267
+              <strong>Bitangaza Ruth:</strong> +250 787 203 308
             </p>
-            <p className="text-gray-600">Role: CEO</p>
+            {/* <p className="text-gray-600">Role: CEO</p>
             <p className="mt-2 text-gray-600">
-              <strong>Jane Smith:</strong> +250 780 654 321
+              <strong>Jane Smith:</strong> +250 787 654 321
             </p>
             <p className="text-gray-600">Role: Support Specialist</p>
             <p className="mt-2 text-gray-600">
               <strong>Mark Johnson:</strong> +250 780 789 012
-            </p>
+            </p> */}
             <p className="text-gray-600">Role: Crisis Counselor</p>
             <p className="mt-2 text-gray-600">
               <strong>Email:</strong>{" "}
               <a
-                href="mailto:isangepro@gmail.com"
+                href="mailto:ruthbitangaza99@gmail.com"
                 className="text-blue-600 hover:underline"
               >
-                isangepro@gmail.com
+                ruthbitangaza99@gmail.com
               </a>
             </p>
           </div>

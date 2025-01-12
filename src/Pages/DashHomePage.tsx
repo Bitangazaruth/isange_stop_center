@@ -8,7 +8,7 @@ import PiChart from "@/components/PiChart";
 
 const DashHomePage = () => {
   return (
-    <div className=" bg-white p-4 shadow-md mr-4">
+    <div className=" bg-white p-4 mt-8 mr-4">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Widget
           title="Total Users"

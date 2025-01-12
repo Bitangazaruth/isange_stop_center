@@ -12,7 +12,7 @@ function AdminLayout() {
       </aside>
       <section className="flex-1 h-screen bg-[#084287]">
         <NavBar isAboveMediumScreen={isAboveMediumScreen} />
-        <div className="overflow-y-auto h-[80vh] bg-white ">
+        <div className="overflow-y-auto h-[100vh] bg-white ">
           <Outlet />
         </div>
       </section>

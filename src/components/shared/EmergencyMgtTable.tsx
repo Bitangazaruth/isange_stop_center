@@ -19,6 +19,7 @@ import { MdLocalHospital } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Notiflix from "notiflix"; // Import Notiflix
 import axios from "axios";
+import { Paginate } from "../Paginate";
 
 const EmergencyMgtTable = () => {
   const [data, setData] = useState([]);
@@ -253,7 +254,22 @@ const EmergencyMgtTable = () => {
     {
       header: "Status",
       accessorKey: "statusMsg",
-      cell: ({ getValue }) => <div className="w-32 truncate">{getValue()}</div>,
+      cell: ({ getValue }) => (
+        <div
+          className={`w-34
+        ${
+          getValue() === "pending"
+            ? "py-2 rounded-[10px] bg-green-500 text-white text-center capitalize"
+            : getValue() === "accepted"
+            ? "py-2 rounded-[10px] bg-blue-500 text-white text-center capitalize"
+            : "py-2 rounded-[10px] bg-red-500 text-white text-center capitalize"
+        }
+  
+        `}
+        >
+          {getValue()}
+        </div>
+      ),
     },
     {
       accessorKey: "Actions",
@@ -302,7 +318,7 @@ const EmergencyMgtTable = () => {
   };
 
   return (
-    <div className="mt-4 h-full">
+    <div className="mt-4 h-full p-4">
       <div className="flex justify-between items-center mb-3">
         <div className="flex items-center space-x-3">
           <p className="font-semibold ml-4">SORT BY</p>
@@ -351,15 +367,15 @@ const EmergencyMgtTable = () => {
         </button>
       </div>
 
-      <table className="table-auto border-collapse border-none w-[96%] bg-white rounded-[22px] ml-2">
+      <table className="table-auto border-collapse border-none w-[96%] bg-white rounded-[5px] ml-2 overflow-hidden">
         <thead>
-          <tr className="text-[#000] text-[12px] bolder">
+          <tr className="text-[#000] text-[12px] bolder rounded-[5px]">
             {table.getHeaderGroups().map((headerGroup) => (
               <React.Fragment key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="px-4 py-2 text-left font-semibold text-gray-700"
+                    className="px-4 py-4 text-left font-semibold text-gray-700 bg-slate-300 p-2"
                     onClick={header.column.getToggleSortingHandler()}
                   >
                     <div>
@@ -376,7 +392,9 @@ const EmergencyMgtTable = () => {
         </thead>
         <tbody className="w-[101px] h-[19px] text-black text-xs font-normal font-['Inter']">
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
+            <tr key={row.id}
+            className="border-b border-gray-200 py-4"
+            >
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} className="px-4 py-2">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -387,54 +405,11 @@ const EmergencyMgtTable = () => {
         </tbody>
       </table>
 
-      <div className="w-[40%] h-[32px] relative bg-white rounded-lg flex justify-end items-center mt-2 shadow border-[#00743F] left-[33rem]">
-        <button
-          className="w-1/3 h-7 text-center font-medium font-sans flex justify-center items-center"
-          onClick={() =>
-            setPagination((prevState) => ({
-              ...prevState,
-              pageIndex: prevState.pageIndex - 1,
-            }))
-          }
-          disabled={pagination.pageIndex === 0}
-        >
-          <span>
-            <GrFormPrevious />
-          </span>
-        </button>
-        {[...Array(table.getPageCount()).keys()].map((index) => (
-          <button
-            key={index}
-            className={`w-1/3 h-7 text-center font-medium font-sans flex justify-center items-center ${
-              index === pagination.pageIndex
-                ? "border bg-[#084287] text-white"
-                : ""
-            }`}
-            onClick={() =>
-              setPagination((prevState) => ({
-                ...prevState,
-                pageIndex: index,
-              }))
-            }
-          >
-            <span>{index + 1}</span>
-          </button>
-        ))}
-        <button
-          className="w-1/3 h-7 text-center font-medium font-sans rounded-r-full flex justify-center items-center"
-          onClick={() =>
-            setPagination((prevState) => ({
-              ...prevState,
-              pageIndex: prevState.pageIndex + 1,
-            }))
-          }
-          disabled={pagination.pageIndex === table.getPageCount() - 1}
-        >
-          <span>
-            <MdOutlineNavigateNext />
-          </span>
-        </button>
-      </div>
+      <Paginate
+        table={table}
+        pagination={pagination}
+        setPagination={setPagination}
+      />
 
       {showModal && (
         <Modal onClose={handleModalClose} onCaseCreated={handleCaseCreated} />

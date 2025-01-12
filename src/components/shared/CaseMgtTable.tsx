@@ -18,8 +18,9 @@ import { MdOutlineNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdLocalHospital } from "react-icons/md";
 import { Link } from "react-router-dom";
-import Notiflix from "notiflix"; 
+import Notiflix from "notiflix";
 import axios from "axios";
+import { Paginate } from "../Paginate";
 
 const CaseMgtTable = () => {
   const [data, setData] = useState([]);
@@ -37,60 +38,60 @@ const CaseMgtTable = () => {
   const userString = localStorage.getItem("IsLoggedIn");
   const user = userString ? JSON.parse(userString) : null;
 
-useEffect(() => {
-  const fetchData = async () => {
-    const token = localStorage.getItem("access_token");
-    if (!token) {
-      console.error("No token found");
-      return;
-    }
-
-    try {
-      let url = "";
-      if (user.USER.role === "user") {
-        url = "https://isange-pro-be.onrender.com/api/v1/Case/getAllCasesUser";
-      } else if (user.USER.role === "admin") {
-        url = "https://isange-pro-be.onrender.com/api/v1/Case/getAllCases";
-      } else if (user.USER.role === "RIB") {
-        url =
-          "https://isange-pro-be.onrender.com/api/v1/Case/getCasesAssignedToRIB";
-      } else if (user.USER.role === "hospital") {
-        url =
-          "https://isange-pro-be.onrender.com/api/v1/Case/getCasesAssignedToHospital";
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+        console.error("No token found");
+        return;
       }
 
-      if (url) {
-        const response = await fetch(url, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+      try {
+        let url = "";
+        if (user.USER.role === "user") {
+          url =
+            "https://isange-pro-be.onrender.com/api/v1/Case/getAllCasesUser";
+        } else if (user.USER.role === "admin") {
+          url = "https://isange-pro-be.onrender.com/api/v1/Case/getAllCases";
+        } else if (user.USER.role === "RIB") {
+          url =
+            "https://isange-pro-be.onrender.com/api/v1/Case/getCasesAssignedToRIB";
+        } else if (user.USER.role === "hospital") {
+          url =
+            "https://isange-pro-be.onrender.com/api/v1/Case/getCasesAssignedToHospital";
         }
 
-        const result = await response.json();
-        const data = user.USER.role === "admin" ? result.cases : result;
+        if (url) {
+          const response = await fetch(url, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
 
-        setData(
-          data.map((r: any) => {
-            if (r.isRIBAccepted) r.statusMsg = "Case accepted by RIB";
-            else if (r.isHospitalAccepted)
-              r.statusMsg = "Case accepted by Hospital";
-            else r.statusMsg = "pending";
-            return r;
-          })
-        );
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          const data = user.USER.role === "admin" ? result.cases : result;
+
+          setData(
+            data.map((r: any) => {
+              if (r.isRIBAccepted) r.statusMsg = "Case accepted by RIB";
+              else if (r.isHospitalAccepted)
+                r.statusMsg = "Case accepted by Hospital";
+              else r.statusMsg = "pending";
+              return r;
+            })
+          );
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+    };
 
-  fetchData();
-}, []);
-
+    fetchData();
+  }, [showModal]);
 
   const handleEditClick = (id: string) => {
     console.log("Clicked case ID:", id);
@@ -207,7 +208,9 @@ useEffect(() => {
     {
       header: "Victim Name",
       accessorKey: "victim_name",
-      cell: ({ getValue }) => <div className="w-20 truncate">{getValue()}</div>,
+      cell: ({ getValue }) => (
+        <div className="w-20 truncate ">{getValue()}</div>
+      ),
     },
     {
       header: "Risk Type",
@@ -221,7 +224,22 @@ useEffect(() => {
     },
     {
       header: "Status",
-      cell: ({ getValue }) => <div className="w-14 truncate">{getValue()}</div>,
+      cell: ({ getValue }) => (
+        <div
+          className={`w-24 
+      ${
+        getValue() === "pending"
+          ? "py-2 rounded-[10px] bg-green-500 text-white text-center capitalize"
+          : getValue() === "accepted"
+          ? "py-2 rounded-[10px] bg-blue-500 text-white text-center capitalize"
+          : "py-2 rounded-[10px] bg-red-500 text-white text-center capitalize"
+      }
+
+      `}
+        >
+          {getValue()}
+        </div>
+      ),
       accessorKey: "statusMsg",
     },
     {
@@ -230,19 +248,22 @@ useEffect(() => {
       cell: ({ row }) => (
         <div className="flex space-x-2">
           <Link to={`/admin/caseDetails/${row.original._id}`}>
-            <FaRegEye className="text-green-500 cursor-pointer" />
+            <FaRegEye className="text-green-500 cursor-pointer" size={18} />
           </Link>
           <MdLocalHospital
             onClick={() => handleEmergency(row.original._id)}
             className="text-red-500 cursor-pointer hover:scale-150"
+            size={18}
           />
           <FiEdit
             className="text-blue-500 cursor-pointer"
             onClick={() => handleEditClick(row.original._id)}
+            size={18}
           />
           <FiTrash2
             className="text-red-500 cursor-pointer"
             onClick={() => handleDelete(row.original._id)}
+            size={18}
           />
         </div>
       ),
@@ -271,13 +292,13 @@ useEffect(() => {
   };
 
   return (
-    <div className="mt-4 h-full">
+    <div className="mt-4 h-full p-4">
       <div className="flex justify-between items-center mb-3">
         <div className="flex items-center space-x-3">
-          <p className="font-semibold ml-4">SORT BY</p>
+          <p className="font-semibold ml-4 text-gray-400">SORT BY</p>
           <div className="relative">
             <div
-              className="flex items-center space-x-1 px-2 py-1 cursor-pointer"
+              className="flex items-center space-x-1 px-2 py-1 cursor-pointer "
               onClick={() => setShowDropdown(!showDropdown)}
             >
               <FaCalendarAlt />
@@ -320,15 +341,15 @@ useEffect(() => {
         </button>
       </div>
 
-      <table className="table-auto border-collapse border-none w-[96%] bg-white rounded-[22px] ml-2">
+      <table className="table-auto border-collapse border-none w-[96%] bg-white rounded-[5px] ml-2 overflow-hidden">
         <thead>
-          <tr className="text-[#000] text-[12px] bolder">
+          <tr className="text-[#000] text-[12px] bolder rounded-[5px]">
             {table.getHeaderGroups().map((headerGroup) => (
               <React.Fragment key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="px-4 py-2 text-left font-semibold text-gray-700"
+                    className="px-4 py-4 text-left font-semibold text-gray-700 bg-slate-300 p-2"
                     onClick={header.column.getToggleSortingHandler()}
                   >
                     <div>
@@ -345,7 +366,7 @@ useEffect(() => {
         </thead>
         <tbody className="w-[101px] h-[19px] text-black text-xs font-normal font-['Inter']">
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
+            <tr key={row.id} className="border-b border-gray-200 py-4">
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} className="px-4 py-2">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -356,54 +377,11 @@ useEffect(() => {
         </tbody>
       </table>
 
-      <div className="w-[40%] h-[32px] relative bg-white rounded-lg flex justify-end items-center mt-2 shadow border-[#00743F] left-[33rem]">
-        <button
-          className="w-1/3 h-7 text-center font-medium font-sans flex justify-center items-center"
-          onClick={() =>
-            setPagination((prevState) => ({
-              ...prevState,
-              pageIndex: prevState.pageIndex - 1,
-            }))
-          }
-          disabled={pagination.pageIndex === 0}
-        >
-          <span>
-            <GrFormPrevious />
-          </span>
-        </button>
-        {[...Array(table.getPageCount()).keys()].map((index) => (
-          <button
-            key={index}
-            className={`w-1/3 h-7 text-center font-medium font-sans flex justify-center items-center ${
-              index === pagination.pageIndex
-                ? "border bg-[#084287] text-white"
-                : ""
-            }`}
-            onClick={() =>
-              setPagination((prevState) => ({
-                ...prevState,
-                pageIndex: index,
-              }))
-            }
-          >
-            <span>{index + 1}</span>
-          </button>
-        ))}
-        <button
-          className="w-1/3 h-7 text-center font-medium font-sans rounded-r-full flex justify-center items-center"
-          onClick={() =>
-            setPagination((prevState) => ({
-              ...prevState,
-              pageIndex: prevState.pageIndex + 1,
-            }))
-          }
-          disabled={pagination.pageIndex === table.getPageCount() - 1}
-        >
-          <span>
-            <MdOutlineNavigateNext />
-          </span>
-        </button>
-      </div>
+      <Paginate
+        table={table}
+        pagination={pagination}
+        setPagination={setPagination}
+      />
 
       {showModal && (
         <Modal onClose={handleModalClose} onCaseCreated={handleCaseCreated} />

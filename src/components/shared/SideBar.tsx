@@ -14,6 +14,7 @@ import { MdModelTraining } from "react-icons/md";
 import { FaBriefcase } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 import { FaUsers } from "react-icons/fa";
+import { styled } from "styled-components";
 
 function SideBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,16 +69,16 @@ function SideBar() {
       icon: <MdModelTraining size={17} color="#999" />,
       link: "trainings",
     },
-    {
-      name: "Help Center",
-      icon: <MdOutlineHelpCenter size={17} color="#999" />,
-      link: "helping",
-    },
-    {
-      name: "Setting",
-      icon: <MdOutlineSettings size={17} color="#999" />,
-      link: "settings/profile",
-    },
+    // {
+    //   name: "Help Center",
+    //   icon: <MdOutlineHelpCenter size={17} color="#999" />,
+    //   link: "helping",
+    // },
+    // {
+    //   name: "Setting",
+    //   icon: <MdOutlineSettings size={17} color="#999" />,
+    //   link: "settings/profile",
+    // },
   ];
 
   const adminMenuItems = [
@@ -234,39 +235,44 @@ function SideBar() {
             </button>
           </div>
         </div>
-        <div className="top-[90px] absolute flex-col justify-start items-center gap-4 inline-flex sm:static sm:flex sm:mt-4">
-          <div className="flex-col ml-3 justify-start items-start gap-3 flex">
-            <div className="flex-col justify-start items-start gap-0.1 flex">
-              <div className="pl-8 pb-1.5 justify-start items-center inline-flex mb-2">
+        <div className="top-[90px] absolute  justify-start items-center gap-4 inline-flex sm:static sm:flex sm:mt-4">
+          <div className="flex-col justify-start items-start gap-3 flex">
+            <div className="flex-col justify-start items-start gap-0.1 flex w-full">
+              <div className="pb-1.5 justify-start items-center inline-flex mb-2">
                 <p className="text-[#000] text-xs font-normal font-['Inter'] leading-[18px]">
                   Home
                 </p>
               </div>
-              <div className="flex-col justify-start items-start flex">
+              <NavLinkContainer className="flex-col justify-start items-start flex w-full">
                 {menuItems.slice(0, 6).map((item) => (
-                  <Link to={item.link} key={item.name}>
+                  <Link
+                    to={item.link}
+                    key={item.name}
+                    className={
+                      item.name === selectedItem
+                        ? "p-3 justify-start items-center gap-2.5 inline-flex border-2  w-full bg-white"
+                        : "p-3 justify-start items-center gap-2.5 inline-flex border-2 border-transparent w-full hover:bg-[#0951aa]"
+                    }
+                    onClick={() => handleItemClick(item.name)}
+                  >
                     <div
-                      className={`self-stretch h-6 w-48 rounded-[8px] justify-start items-center gap-2.5 inline-flex ${
-                        selectedItem === item.name
-                          ? "text-yellow-300"
-                          : "hover:border-2 hover:border-[#FFEF00]"
-                      }`}
-                      onClick={() => handleItemClick(item.name)}
+                      className={`self-stretch w-48 rounded-[8px]  justify-start items-center gap-2.5 inline-flex 
+                      border-2 border-transparent
+                       `}
                     >
                       <div className="w-5 h-5 relative">{item.icon}</div>
                       <div
-                        className={`grow flex gap-3 shrink basis-0 text-[12px] font-normal font-['Inter'] ${
-                          selectedItem === item.name
-                            ? "text-yellow-300"
-                            : "text-[#DCDADA]"
-                        }`}
+                        className={`grow flex gap-3 shrink basis-0 text-[12px] font-normal font-['Inter'] 
+                          
+                         `}
+                         style={{color:'#999'}}
                       >
                         <b>{item.name}</b>
                       </div>
                     </div>
                   </Link>
                 ))}
-              </div>
+              </NavLinkContainer>
             </div>
             <div className="flex-col justify-start items-start flex">
               <div className="w-48 pl-8 pb-1.5 justify-start items-center inline-flex">
@@ -280,11 +286,12 @@ function SideBar() {
                 {menuItems.slice(6, 8).map((item) => (
                   <Link to={item.link} key={item.name}>
                     <div
-                      className={`self-stretch h-6 w-48 rounded-[8px] justify-start items-center gap-2.5 inline-flex ${
-                        selectedItem === item.name
-                          ? "text-yellow-300"
-                          : "hover:border-2 hover:border-[#FFEF00]"
-                      }`}
+                      className={`self-stretch h-6 w-48 p-5 rounded-[8px] justify-start items-center gap-2.5 inline-flex border-1 border-transparent
+                        ${
+                          selectedItem === item.name
+                            ? "text-yellow-300"
+                            : "hover:border-1 hover:border-[#FFEF00]"
+                        }`}
                       onClick={() => handleItemClick(item.name)}
                     >
                       <div className="w-5 h-5 relative">{item.icon}</div>
@@ -314,11 +321,13 @@ function SideBar() {
             {menuItems.slice(8).map((item) => (
               <Link to={item.link} key={item.name}>
                 <div
-                  className={`w-48 h-6 rounded-[8px] justify-start items-center gap-2.5 inline-flex ${
-                    selectedItem === item.name
-                      ? "text-yellow-300"
-                      : "hover:border-2 hover:border-[#FFEF00]"
-                  }`}
+                  className={`w-48 h-6 rounded-[8px] justify-start items-center gap-2.5 inline-flex 
+                    border-1 border-transparent
+                    ${
+                      selectedItem === item.name
+                        ? "text-yellow-300"
+                        : "hover:border-1 hover:border-[#FFEF00]"
+                    }`}
                   onClick={() => handleItemClick(item.name)}
                 >
                   <div className="w-5 h-5 relative">{item.icon}</div>
@@ -351,3 +360,12 @@ function SideBar() {
 }
 
 export default SideBar;
+
+const NavLinkContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 10px;
+  margin-top: 2rem;
+`;

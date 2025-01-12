@@ -14,6 +14,7 @@ import { MdOutlineNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import Counter from "../components/Counter";
 import Modal from "../components/shared/FollowUpModal";
+import { Paginate } from "@/components/Paginate";
 
 const FollowUp = () => {
   const [data, setData] = useState([]);
@@ -37,7 +38,17 @@ const FollowUp = () => {
       { header: "Gender", accessorKey: "gender" },
       { header: "Doctor Name", accessorKey: "doctor_name" },
       { header: "Needed Aid", accessorKey: "needed_aid" },
-      { header: "Next Appointment", accessorKey: "next_appointment" },
+      {
+        header: "Next Appointment",
+        accessorKey: "next_appointment",
+        cell: ({ getValue }) => {
+          return (
+            <div className="flex items-center space-x-2">
+              {new Date(getValue()).toDateString() } - {new Date(getValue()).toLocaleTimeString()}
+            </div>
+          );
+        },
+      },
     ],
     []
   );
@@ -100,13 +111,13 @@ const FollowUp = () => {
       </div>
 
       <div className="grid gap-8 p-2 rounded-lg w-[100%] md:flex lg:justify-between"></div>
-      <table className="table-auto border-collapse border-none w-[90%] bg-white rounded-lg ml-4 h-full shadow-md mt-4">
+      <table className="table-auto border-collapse border-none w-[96%] bg-white rounded-[5px] ml-2 overflow-hidden">
         <thead>
-          <tr className="text-[#000] text-[12px] bolder bg-[#f4f4f5]">
+          <tr className="text-[#000] text-[12px] bolder bg-[#f4f4f5]  rounded-[5px]">
             {columns.map((column, index) => (
               <th
                 key={index}
-                className="px-4 py-2 text-left font-semibold text-gray-700"
+                className="px-4 py-4 text-left font-semibold text-gray-700 bg-slate-300 p-2"
               >
                 {column.header}
               </th>
@@ -115,7 +126,7 @@ const FollowUp = () => {
         </thead>
         <tbody className="text-black text-xs font-normal">
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
+            <tr key={row.id} className="border-b border-gray-200 py-4">
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} className="px-4 py-2 border-none">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -125,54 +136,11 @@ const FollowUp = () => {
           ))}
         </tbody>
       </table>
-      <div className="w-[40%] h-[32px] relative bg-white rounded-lg flex justify-end items-center mt-2 shadow border-[#00743F] left-[33rem]">
-        <button
-          className="w-1/3 h-7 text-center font-medium font-sans flex justify-center items-center"
-          onClick={() =>
-            setPagination((prevState) => ({
-              ...prevState,
-              pageIndex: prevState.pageIndex - 1,
-            }))
-          }
-          disabled={pagination.pageIndex === 0}
-        >
-          <span>
-            <GrFormPrevious />
-          </span>
-        </button>
-        {[...Array(table.getPageCount()).keys()].map((index) => (
-          <button
-            key={index}
-            className={`w-1/3 h-7 text-center font-medium font-sans flex justify-center items-center ${
-              index === pagination.pageIndex
-                ? "border bg-[#084287]  text-white"
-                : ""
-            }`}
-            onClick={() =>
-              setPagination((prevState) => ({
-                ...prevState,
-                pageIndex: index,
-              }))
-            }
-          >
-            <span>{index + 1}</span>
-          </button>
-        ))}
-        <button
-          className="w-1/3 h-7 text-center font-medium font-sans rounded-r-full flex justify-center items-center"
-          onClick={() =>
-            setPagination((prevState) => ({
-              ...prevState,
-              pageIndex: prevState.pageIndex + 1,
-            }))
-          }
-          disabled={pagination.pageIndex === table.getPageCount() - 1}
-        >
-          <span>
-            <MdOutlineNavigateNext />
-          </span>
-        </button>
-      </div>
+      <Paginate
+        pagination={pagination}
+        setPagination={setPagination}
+        table={table}
+      />
       {isModalOpen && <Modal onClose={handleCloseModal} />}
     </div>
   );

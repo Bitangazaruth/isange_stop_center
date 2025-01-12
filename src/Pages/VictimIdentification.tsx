@@ -12,6 +12,7 @@ import {
 } from "@tanstack/react-table";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
+import { Paginate } from "@/components/Paginate";
 
 const getStatusStyle = (status) => {
   switch (status) {
@@ -40,8 +41,8 @@ const VictimIdentification = () => {
         accessorKey: "actions",
         cell: () => (
           <div className="flex space-x-2">
-            <FiTrash2 className="text-red-500 cursor-pointer" />
-            <FiEdit className="text-blue-500 cursor-pointer" />
+            <FiTrash2 className="text-red-500 cursor-pointer" size={15} />
+            <FiEdit className="text-blue-500 cursor-pointer" size={15} />
           </div>
         ),
       },
@@ -102,7 +103,7 @@ const VictimIdentification = () => {
   };
 
   return (
-    <div className="ml-2 mt-8">
+    <div className="ml-2 mt-8 p-4">
       <div className="grid md:grid-cols-3 lg:flex lg:justify-between">
         <div className="flex items-center relative">
           <div className="relative ml-4">
@@ -153,13 +154,13 @@ const VictimIdentification = () => {
       </div>
 
       <div className="grid gap-8 p-2 rounded-lg w-[100%] md:flex lg:justify-between"></div>
-      <table className="table-auto border-collapse border-none w-[95%] bg-white rounded-lg ml-4 h-full shadow-md mt-4">
+      <table className="table-auto border-collapse border-none w-[95%] bg-white rounded-lg h-full ml-2 overflow-hidden mt-4">
         <thead>
           <tr className="text-[#000] text-[12px] bolder bg-[#f4f4f5]">
             {columns.map((column, index) => (
               <th
                 key={index}
-                className="px-4 py-2 text-left font-semibold text-gray-700"
+                className="px-4 py-4 text-left font-semibold text-gray-700 bg-slate-300 p-2"
               >
                 {column.header}
               </th>
@@ -168,9 +169,9 @@ const VictimIdentification = () => {
         </thead>
         <tbody className="text-black text-xs font-normal">
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="">
+            <tr key={row.id} className="border-b border-gray-200 py-4">
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="px-4 py-2 border-none mt-20">
+                <td key={cell.id} className="px-4 py-2">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
@@ -178,54 +179,11 @@ const VictimIdentification = () => {
           ))}
         </tbody>
       </table>
-      <div className="w-[40%] h-[32px] relative bg-white rounded-lg flex justify-end items-center mt-2 shadow border-[#00743F] left-[33rem]">
-        <button
-          className="w-1/3 h-7 text-center font-medium font-sans flex justify-center items-center"
-          onClick={() =>
-            setPagination((prevState) => ({
-              ...prevState,
-              pageIndex: prevState.pageIndex - 1,
-            }))
-          }
-          disabled={pagination.pageIndex === 0}
-        >
-          <span>
-            <GrFormPrevious />
-          </span>
-        </button>
-        {[...Array(table.getPageCount()).keys()].map((index) => (
-          <button
-            key={index}
-            className={`w-1/3 h-7 text-center font-medium font-sans flex justify-center items-center ${
-              index === pagination.pageIndex
-                ? "border bg-[#084287]  text-white"
-                : ""
-            }`}
-            onClick={() =>
-              setPagination((prevState) => ({
-                ...prevState,
-                pageIndex: index,
-              }))
-            }
-          >
-            <span>{index + 1}</span>
-          </button>
-        ))}
-        <button
-          className="w-1/3 h-7 text-center font-medium font-sans rounded-r-full flex justify-center items-center"
-          onClick={() =>
-            setPagination((prevState) => ({
-              ...prevState,
-              pageIndex: prevState.pageIndex + 1,
-            }))
-          }
-          disabled={pagination.pageIndex === table.getPageCount() - 1}
-        >
-          <span>
-            <MdOutlineNavigateNext />
-          </span>
-        </button>
-      </div>
+      <Paginate
+        table={table}
+        pagination={pagination}
+        setPagination={setPagination}
+      />
     </div>
   );
 };
