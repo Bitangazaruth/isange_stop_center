@@ -59,11 +59,11 @@ function SideBar() {
       icon: <MdDataThresholding size={17} color="#999" />,
       link: "analysis",
     },
-    {
-      name: "Emergency",
-      icon: <RiBookReadLine size={17} color="#999" />,
-      link: "emergency",
-    },
+    // {
+    //   name: "Emergency",
+    //   icon: <RiBookReadLine size={17} color="#999" />,
+    //   link: "emergency",
+    // },
     {
       name: "Training",
       icon: <MdModelTraining size={17} color="#999" />,
@@ -226,7 +226,7 @@ function SideBar() {
         }`}
       >
         <div className="relative">
-          <div className="w-[180px] h-[23px] left-[20px] top-[7px] absolute sm:static">
+          <div className="w-full h-[23px]  absolute sm:static z-30">
             <img src={baz} alt="bazfarm" />
           </div>
           <div className="absolute top-[20px] right-[20px] sm:hidden">
@@ -235,16 +235,55 @@ function SideBar() {
             </button>
           </div>
         </div>
-        <div className="top-[90px] absolute  justify-start items-center gap-4 inline-flex sm:static sm:flex sm:mt-4">
-          <div className="flex-col justify-start items-start gap-3 flex">
-            <div className="flex-col justify-start items-start gap-0.1 flex w-full">
-              <div className="pb-1.5 justify-start items-center inline-flex mb-2">
-                <p className="text-[#000] text-xs font-normal font-['Inter'] leading-[18px]">
-                  Home
-                </p>
+        <div className="max-h-[100%] overflow-y-auto pb-[100px]">
+          <div className="top-[90px] absolute  justify-start items-center gap-4 inline-flex sm:static sm:flex sm:mt-4">
+            <div className="flex-col justify-start items-start flex">
+              <div className="flex-col justify-start items-start gap-0.1 flex w-full">
+                <div className="pb-1.5 justify-start items-center inline-flex mb-2">
+                  <p className="text-[#000] text-xs font-normal font-['Inter'] leading-[18px]">
+                    Home
+                  </p>
+                </div>
+                <NavLinkContainer className="flex-col justify-start items-start flex w-full">
+                  {menuItems.slice(0, 6).map((item) => (
+                    <Link
+                      to={item.link}
+                      key={item.name}
+                      className={
+                        item.name === selectedItem
+                          ? "p-3 justify-start items-center gap-2.5 inline-flex border-2  w-full bg-white"
+                          : "p-3 justify-start items-center gap-2.5 inline-flex border-2 border-transparent w-full hover:bg-[#0951aa]"
+                      }
+                      onClick={() => handleItemClick(item.name)}
+                    >
+                      <div
+                        className={`self-stretch w-48 rounded-[8px]  justify-start items-center gap-2.5 inline-flex 
+                      border-2 border-transparent
+                       `}
+                      >
+                        <div className="w-5 h-5 relative">{item.icon}</div>
+                        <div
+                          className={`grow flex gap-3 shrink basis-0 text-[12px] font-normal font-['Inter'] 
+                          
+                         `}
+                          style={{ color: "#999" }}
+                        >
+                          <b>{item.name}</b>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </NavLinkContainer>
               </div>
-              <NavLinkContainer className="flex-col justify-start items-start flex w-full">
-                {menuItems.slice(0, 6).map((item) => (
+              {/* <div className="w-48 pl-8 pb-1.5 justify-start items-center inline-flex">
+                <div className="justify-start items-center inline-flex mb-2">
+                  <p className="text-[#000] text-xs font-normal font-['Inter'] leading-[18px]">
+                    Platform
+                  </p>
+                </div>
+              </div> */}
+              <div className="flex-col justify-start items-start flex w-full">
+                {menuItems.slice(6, 8).map((item) => (
                   <Link
                     to={item.link}
                     key={item.name}
@@ -257,50 +296,15 @@ function SideBar() {
                   >
                     <div
                       className={`self-stretch w-48 rounded-[8px]  justify-start items-center gap-2.5 inline-flex 
-                      border-2 border-transparent
-                       `}
+                        border-2 border-transparent
+                         `}
                     >
                       <div className="w-5 h-5 relative">{item.icon}</div>
                       <div
                         className={`grow flex gap-3 shrink basis-0 text-[12px] font-normal font-['Inter'] 
                           
-                         `}
-                         style={{color:'#999'}}
-                      >
-                        <b>{item.name}</b>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </NavLinkContainer>
-            </div>
-            <div className="flex-col justify-start items-start flex">
-              <div className="w-48 pl-8 pb-1.5 justify-start items-center inline-flex">
-                <div className="justify-start items-center inline-flex mb-2">
-                  <p className="text-[#000] text-xs font-normal font-['Inter'] leading-[18px]">
-                    Platform
-                  </p>
-                </div>
-              </div>
-              <div className="flex-col justify-start items-start flex">
-                {menuItems.slice(6, 8).map((item) => (
-                  <Link to={item.link} key={item.name}>
-                    <div
-                      className={`self-stretch h-6 w-48 p-5 rounded-[8px] justify-start items-center gap-2.5 inline-flex border-1 border-transparent
-                        ${
-                          selectedItem === item.name
-                            ? "text-yellow-300"
-                            : "hover:border-1 hover:border-[#FFEF00]"
-                        }`}
-                      onClick={() => handleItemClick(item.name)}
-                    >
-                      <div className="w-5 h-5 relative">{item.icon}</div>
-                      <div
-                        className={`grow flex gap-3 shrink basis-0 text-[12px] font-normal font-['Inter'] ${
-                          selectedItem === item.name
-                            ? "text-yellow-300"
-                            : "text-[#DCDADA]"
-                        }`}
+                        `}
+                        style={{ color: "#999" }}
                       >
                         <b>{item.name}</b>
                       </div>
@@ -310,49 +314,57 @@ function SideBar() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="top-[398px] absolute ml-3 flex-col justify-start items-start gap-0 inline-flex sm:static sm:mt-4">
-          <div className="w-48 pl-8 pb-1.5 justify-start items-center inline-flex">
+          {/* <div className="top-[398px] absolute ml-3 flex-col justify-start items-start gap-0 inline-flex sm:static sm:mt-4"> */}
+          {/* <div className="w-48 pl-8 pb-1.5 justify-start items-center inline-flex">
             <div className="text-[#000] text-xs font-normal font-['Inter'] leading-[18px]">
               Preferences
             </div>
-          </div>
-          <div className="flex-col justify-start items-start flex">
+          </div> */}
+          <div className="flex-col justify-start items-start flex w-full">
             {menuItems.slice(8).map((item) => (
-              <Link to={item.link} key={item.name}>
+              <Link
+                to={item.link}
+                key={item.name}
+                className={
+                  item.name === selectedItem
+                    ? "p-3 justify-start items-center gap-2.5 inline-flex border-2  w-full bg-white"
+                    : "p-3 justify-start items-center gap-2.5 inline-flex border-2 border-transparent w-full hover:bg-[#0951aa]"
+                }
+                onClick={() => handleItemClick(item.name)}
+              >
                 <div
-                  className={`w-48 h-6 rounded-[8px] justify-start items-center gap-2.5 inline-flex 
-                    border-1 border-transparent
-                    ${
-                      selectedItem === item.name
-                        ? "text-yellow-300"
-                        : "hover:border-1 hover:border-[#FFEF00]"
-                    }`}
-                  onClick={() => handleItemClick(item.name)}
+                  className={`self-stretch w-48 rounded-[8px]  justify-start items-center gap-2.5 inline-flex 
+                  border-2 border-transparent
+                   `}
                 >
                   <div className="w-5 h-5 relative">{item.icon}</div>
                   <div
-                    className={`grow flex gap-3 shrink basis-0 text-[12px] font-normal font-['Inter'] ${
-                      selectedItem === item.name
-                        ? "text-yellow-300"
-                        : "text-[#DCDADA]"
-                    }`}
+                    className={`grow flex gap-3 shrink basis-0 text-[12px] font-normal font-['Inter'] 
+                          
+                    `}
+                    style={{ color: "#999" }}
                   >
                     <b>{item.name}</b>
                   </div>
                 </div>
               </Link>
             ))}
+            {/* </div> */}
           </div>
-        </div>
-        <div className="mt-4 px-3">
-          <button
-            className="flex items-center gap-2.5 w-full h-8 rounded-[8px] hover:border-2 hover:border-[#FFEF00] text-[#DCDADA] text-[12px] font-normal font-['Inter']"
-            onClick={handleLogout}
-          >
-            <AiOutlineLogout size={17} color="#999" />
-            <b>Log Out</b>
-          </button>
+          <div className="flex-col justify-start items-start flex w-full">
+            <button
+              className="p-3 justify-start  text-[12px] items-center gap-2.5 inline-flex border-2 border-transparent w-full hover:bg-[#0951aa]"
+              style={{ color: "#999" }}
+              onClick={handleLogout}
+            >
+              <AiOutlineLogout
+                size={17}
+                color="#999"
+                className="w-5 h-5 relative"
+              />
+              <b>Log Out</b>
+            </button>
+          </div>
         </div>
       </div>
     </div>

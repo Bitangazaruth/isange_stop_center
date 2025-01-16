@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Notiflix from "notiflix";
 
 const SingleUser = () => {
   const [user, setUser] = useState(null);
@@ -66,7 +67,7 @@ const SingleUser = () => {
         { role: newRole },
         config
       );
-
+      Notiflix.Notify.success("User role changed successfully");
       setUser((prevUser) => ({ ...prevUser, role: newRole }));
     } catch (error) {
       console.error("Error changing user role:", error);

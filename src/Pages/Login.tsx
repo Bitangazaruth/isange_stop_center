@@ -5,6 +5,7 @@ import logo from "../../public/images/logo-1.png";
 import rnpImage from "../../public/images/rnp.png";
 import ribImage from "../../public/images/download.jpeg";
 import stopImage from "../../public/images/stop.png";
+import Notiflix from "notiflix";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -54,7 +55,7 @@ const Login = () => {
 
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("IsLoggedIn", JSON.stringify(data));
-
+      Notiflix.Notify.success("Login successful");
       // Navigate to dashboard for now
       navigate("/admin/dashboard");
     } catch (error) {
